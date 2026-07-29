@@ -11,7 +11,7 @@ import {
   isAdminConfigured,
   validAdminPassword,
 } from '@/lib/admin-auth'
-import { db } from '@/lib/db'
+import { getDb } from '@/lib/db'
 import { gifts } from '@/lib/db/schema'
 
 type ActionResult = { ok: true } | { ok: false; error: string }
@@ -105,6 +105,7 @@ export async function saveGift(formData: FormData): Promise<ActionResult> {
     url,
     sortOrder,
   }
+  const db = getDb()
 
   if (rawId) {
     const id = Number(rawId)
@@ -126,6 +127,7 @@ export async function deleteGift(id: number): Promise<ActionResult> {
   if (!(await authorized())) return { ok: false, error: 'Sua sessão expirou. Entre novamente.' }
   if (!Number.isInteger(id) || id <= 0) return { ok: false, error: 'Presente inválido.' }
 
+  const db = getDb()
   const removed = await db.delete(gifts).where(eq(gifts.id, id)).returning({ id: gifts.id })
   if (removed.length === 0) return { ok: false, error: 'Esse presente não existe mais.' }
 

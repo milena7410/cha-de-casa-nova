@@ -1,6 +1,6 @@
 'use server'
 
-import { db } from '@/lib/db'
+import { getDb } from '@/lib/db'
 import { gifts, messages } from '@/lib/db/schema'
 import { demoGifts, demoMessages } from '@/lib/demo-data'
 import { and, asc, desc, eq, isNull } from 'drizzle-orm'
@@ -8,11 +8,13 @@ import { revalidatePath } from 'next/cache'
 
 export async function getGifts() {
   if (process.env.PREVIEW_DATA === '1') return demoGifts
+  const db = getDb()
   return db.select().from(gifts).orderBy(asc(gifts.sortOrder), asc(gifts.id))
 }
 
 export async function getMessages() {
   if (process.env.PREVIEW_DATA === '1') return demoMessages
+  const db = getDb()
   return db.select().from(messages).orderBy(desc(messages.createdAt)).limit(60)
 }
 
@@ -39,6 +41,7 @@ export async function claimGift(input: {
     return { ok: false, error: 'Presente inválido.' }
   }
 
+  const db = getDb()
   const updated = await db
     .update(gifts)
     .set({ claimedBy: guestName, claimedAt: new Date() })
@@ -66,6 +69,7 @@ export async function releaseGift(input: {
   guestName: string
 }): Promise<ClaimResult> {
   const guestName = input.guestName.trim().toLowerCase()
+  const db = getDb()
 
   const [gift] = await db
     .select({ id: gifts.id, claimedBy: gifts.claimedBy })
@@ -105,6 +109,7 @@ export async function postMessage(input: {
     return { ok: false, error: 'Texto muito longo, resume um pouquinho.' }
   }
 
+  const db = getDb()
   await db.insert(messages).values({ guestName, body })
   revalidatePath('/')
   return { ok: true }

@@ -18,7 +18,7 @@ import {
   XIcon,
 } from 'lucide-react'
 
-import { deleteGift, logoutAdmin, saveGift } from '@/app/admin/actions'
+import { clearMessages, deleteGift, logoutAdmin, saveGift } from '@/app/admin/actions'
 import type { Gift } from '@/lib/db/schema'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -89,6 +89,20 @@ export function AdminPanel({ gifts }: { gifts: Gift[] }) {
     })
   }
 
+  function clearWall() {
+    if (!window.confirm('Apagar todos os recados? Essa ação não pode ser desfeita.')) return
+
+    startTransition(async () => {
+      const result = await clearMessages()
+      if (!result.ok) {
+        toast.error(result.error)
+        return
+      }
+      toast.success('Recados apagados.')
+      router.refresh()
+    })
+  }
+
   return (
     <main className="min-h-dvh pb-16">
       <header className="border-b border-border/70 bg-card/90 backdrop-blur">
@@ -98,7 +112,7 @@ export function AdminPanel({ gifts }: { gifts: Gift[] }) {
               <GiftIcon className="size-5" aria-hidden="true" />
             </span>
             <div>
-              <p className="font-bold tracking-tight">Painel da Bruna</p>
+              <p className="font-bold tracking-tight">Painel da Brenda</p>
               <p className="text-xs text-muted-foreground">Gerencie sua lista de presentes</p>
             </div>
           </div>
@@ -128,10 +142,16 @@ export function AdminPanel({ gifts }: { gifts: Gift[] }) {
               Cadastre, ajuste valores e mantenha os links de compra sempre atualizados.
             </p>
           </div>
-          <Button size="lg" onClick={() => setActive('new')}>
-            <PlusIcon data-icon="inline-start" />
-            Novo presente
-          </Button>
+          <div className="flex flex-wrap gap-2">
+            <Button variant="outline" size="lg" onClick={clearWall} disabled={pending}>
+              <Trash2Icon data-icon="inline-start" />
+              Limpar recados
+            </Button>
+            <Button size="lg" onClick={() => setActive('new')}>
+              <PlusIcon data-icon="inline-start" />
+              Novo presente
+            </Button>
+          </div>
         </div>
 
         <section aria-label="Resumo da lista" className="mt-8 grid grid-cols-2 gap-3 lg:grid-cols-4">

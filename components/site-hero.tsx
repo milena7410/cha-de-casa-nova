@@ -4,7 +4,7 @@ import {
   ArrowDownIcon,
   GiftIcon,
   HeartIcon,
-  HomeIcon,
+  LeafIcon,
   MessageCircleHeartIcon,
   SparklesIcon,
 } from 'lucide-react'
@@ -21,10 +21,10 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
       <nav className="relative z-10 mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-5 sm:px-8">
         <Link href="/" className="flex items-center gap-3" aria-label="Início">
           <span className="flex size-10 items-center justify-center rounded-2xl bg-primary text-primary-foreground shadow-sm">
-            <HomeIcon className="size-5" aria-hidden="true" />
+            <LeafIcon className="size-5" aria-hidden="true" />
           </span>
           <span className="flex flex-col leading-tight">
-            <strong className="text-sm font-bold tracking-tight">Casa nova da Bruna</strong>
+            <strong className="text-sm font-bold tracking-tight">Casa nova da Brenda</strong>
             <span className="text-xs text-muted-foreground">um cantinho pra chamar de meu</span>
           </span>
         </Link>
@@ -45,7 +45,7 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
       />
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute right-[4%] bottom-0 size-64 rounded-full bg-amber-200/35 blur-3xl"
+        className="pointer-events-none absolute right-[4%] bottom-0 size-64 rounded-full bg-accent/55 blur-3xl"
       />
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-5 pt-9 pb-16 sm:px-8 sm:pt-14 sm:pb-24 lg:grid-cols-[1.08fr_.92fr] lg:gap-16">
@@ -56,13 +56,13 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
           </Badge>
 
           <h1 className="max-w-3xl text-4xl leading-[1.06] font-bold tracking-[-0.045em] text-balance sm:text-5xl md:text-6xl lg:text-[4.25rem]">
-            Um novo cantinho está começando —{' '}
+            A casa ganhou novos ares —{' '}
             <span className="relative whitespace-nowrap text-primary">
-              vem fazer parte
+              vem celebrar
               <svg
                 aria-hidden="true"
                 viewBox="0 0 320 14"
-                className="absolute -bottom-2 left-0 h-3 w-full text-amber-300"
+                className="absolute -bottom-2 left-0 h-3 w-full text-accent"
                 preserveAspectRatio="none"
               >
                 <path d="M3 10C82 2 222 2 317 8" fill="none" stroke="currentColor" strokeWidth="7" strokeLinecap="round" />
@@ -71,8 +71,8 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
           </h1>
 
           <p className="mt-7 max-w-xl text-base leading-7 text-muted-foreground text-pretty sm:text-lg sm:leading-8">
-            Oi, eu sou a Bruna Vitória! Escolhi cada item com carinho pra montar meu primeiro
-            lar. Você escolhe um presente, reserva aqui e pronto: ninguém repete.
+            Depois de uma reforma cheia de carinho, nossa casa ganhou novos ares. Escolha um presente,
+            reserve aqui e deixe um recadinho para celebrar essa nova fase com a gente.
           </p>
 
           <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
@@ -103,7 +103,7 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
           </div>
         </div>
 
-        <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
+        <div className="relative mx-auto w-full max-w-2xl lg:max-w-none">
           <div
             aria-hidden="true"
             className="absolute -top-5 -right-3 grid grid-cols-4 gap-2 opacity-50 sm:-right-6"
@@ -112,19 +112,15 @@ export function SiteHero({ total, claimed }: { total: number; claimed: number })
               <span key={index} className="size-1.5 rounded-full bg-primary" />
             ))}
           </div>
-          <div className="surface-shadow relative aspect-[1.04] rotate-1 overflow-hidden rounded-[2rem] border-8 border-card bg-secondary sm:rounded-[2.5rem]">
+          <div className="surface-shadow relative aspect-[16/9] rotate-1 scale-[1.12] overflow-hidden rounded-[2rem] border-8 border-card bg-secondary sm:rounded-[2.5rem] lg:scale-[1.2]">
             <Image
-              src="/images/casa-nova.png"
-              alt="Ilustração de um apartamento aconchegante em tons de lilás com plantas, sofá e caixas de mudança"
+              src="/images/cha-casa-nova-brenda.jpeg"
+              alt="Ilustração fofa de uma casa reformada, com luzes, plantas, caixas de mudança, um cachorro e dois pássaros"
               fill
               priority
-              sizes="(max-width: 1024px) 90vw, 520px"
+              sizes="(max-width: 1024px) 100vw, 680px"
               className="object-cover"
             />
-          </div>
-          <div className="absolute -bottom-5 -left-2 flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 shadow-lg sm:-left-7">
-            <span className="text-2xl" aria-hidden="true">🔑</span>
-            <span className="text-sm font-semibold">Meu primeiro lar!</span>
           </div>
         </div>
       </div>

@@ -1,10 +1,15 @@
-# Chá de Casa Nova da Bruna
+# Chá de Casa Nova da Brenda
 
 Site de lista de presentes para chá de casa nova da minha namorada, com reservas em tempo real, links de compra, mural de recados e painel administrativo.
 
-### [site publicado](https://cha-casa-nova-bruna.milenaalegre.workers.dev)
+A aplicação conta com um painel admin onde são adicionados os itens, links etc.
 
-A aplicacao conta com um painel admin onde sao adicionados os itens, links etc
+### Site publicado atualmente
+
+https://cha-casa-nova-bruna.milenaalegre.workers.dev
+
+O conteúdo da Brenda foi publicado nesse Worker existente para preservar o banco e as variáveis
+atuais. A configuração do próximo Worker já usa o nome `cha-casa-nova-brenda`.
 
 ## Funcionalidades
 
@@ -75,3 +80,19 @@ Hospedagem: Cloudflare Workers e OpenNext |
    ```bash
    pnpm dev
    ```
+
+## Publicar no Cloudflare Workers
+
+O projeto já está configurado com OpenNext e Wrangler. Faça login uma vez e publique:
+
+```bash
+pnpm exec wrangler login
+pnpm deploy:setup
+```
+
+O comando usa o nome `cha-casa-nova-brenda`, que gera uma URL `*.workers.dev` própria.
+Para usar uma URL personalizada, abra o Worker no painel da Cloudflare e adicione o domínio em
+**Settings → Domains & Routes → Add Custom Domain**. O domínio precisa estar na conta Cloudflare.
+
+Antes do primeiro deploy, deixe o arquivo `.env.production` preenchido com `DATABASE_URL`,
+`ADMIN_PASSWORD` e `ADMIN_SECRET`; ele não deve ser commitado.

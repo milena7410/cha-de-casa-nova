@@ -415,7 +415,7 @@ export function GiftBoard({ gifts }: { gifts: Gift[] }) {
               <DialogDescription className="leading-6">
                 {active?.mode === 'release'
                   ? `Confirme seu nome para liberar "${active?.gift.name}" novamente.`
-                  : 'Só preciso do seu nome. O recadinho é opcional, mas a Bruna vai amar ler.'}
+                  : 'Só preciso do seu nome. O recadinho é opcional, mas a Brenda vai amar ler.'}
               </DialogDescription>
             </DialogHeader>
 
@@ -440,7 +440,7 @@ export function GiftBoard({ gifts }: { gifts: Gift[] }) {
                     id="guest-note"
                     value={note}
                     onChange={(event) => setNote(event.target.value)}
-                    placeholder="Escreva algo fofo para a Bruna..."
+                    placeholder="Escreva algo fofo para a Brenda..."
                     maxLength={500}
                     rows={4}
                   />

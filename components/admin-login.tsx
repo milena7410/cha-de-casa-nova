@@ -18,7 +18,7 @@ export function AdminLogin({ configured }: { configured: boolean }) {
           <LockKeyholeIcon className="size-5" aria-hidden="true" />
         </span>
         <p className="mt-7 text-sm font-bold tracking-[0.14em] text-primary uppercase">Área privada</p>
-        <h1 className="mt-2 text-3xl font-bold tracking-[-0.035em]">Oi, Bruna!</h1>
+        <h1 className="mt-2 text-3xl font-bold tracking-[-0.035em]">Oi, Brenda!</h1>
         <p className="mt-3 leading-7 text-muted-foreground">
           Entre com sua senha para cadastrar presentes, preços e links de compra.
         </p>

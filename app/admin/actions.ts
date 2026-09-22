@@ -12,7 +12,7 @@ import {
   validAdminPassword,
 } from '@/lib/admin-auth'
 import { getDb } from '@/lib/db'
-import { gifts } from '@/lib/db/schema'
+import { gifts, messages } from '@/lib/db/schema'
 
 type ActionResult = { ok: true } | { ok: false; error: string }
 
@@ -130,6 +130,17 @@ export async function deleteGift(id: number): Promise<ActionResult> {
   const db = getDb()
   const removed = await db.delete(gifts).where(eq(gifts.id, id)).returning({ id: gifts.id })
   if (removed.length === 0) return { ok: false, error: 'Esse presente não existe mais.' }
+
+  revalidatePath('/')
+  revalidatePath('/admin')
+  return { ok: true }
+}
+
+export async function clearMessages(): Promise<ActionResult> {
+  if (!(await authorized())) return { ok: false, error: 'Sua sessão expirou. Entre novamente.' }
+
+  const db = getDb()
+  await db.delete(messages)
 
   revalidatePath('/')
   revalidatePath('/admin')

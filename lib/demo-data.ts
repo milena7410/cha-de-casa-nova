@@ -34,7 +34,7 @@ export const demoGifts: Gift[] = [
     name: 'Jogo de toalhas de banho',
     room: 'Banheiro',
     tier: 'essencial',
-    note: 'Branco, bege ou lilás.',
+    note: 'Branco, bege ou verde sálvia.',
     price: '119.90',
     url: 'https://example.com',
     sortOrder: 30,

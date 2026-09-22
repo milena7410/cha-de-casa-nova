@@ -6,7 +6,7 @@ import { hasAdminSession, isAdminConfigured } from '@/lib/admin-auth'
 export const dynamic = 'force-dynamic'
 
 export const metadata = {
-  title: 'Painel da Bruna | Chá de Casa Nova',
+  title: 'Painel da Brenda | Chá de Casa Nova',
   robots: {
     index: false,
     follow: false,
